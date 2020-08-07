@@ -7,3 +7,8 @@
 #qw9jwiqweqwe {
     padding: 0 10px;
 }
+hola { display: block}
+
+a.nav-link.hicons {
+    color: var(--hicons);
+}

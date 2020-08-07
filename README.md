@@ -1,1 +1,2 @@
-New repo https://github.com/Cuberico/Mooz-Template/
+# Mooz-Template
+La plantilla gratuita de zJerino

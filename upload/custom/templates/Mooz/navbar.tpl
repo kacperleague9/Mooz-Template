@@ -34,7 +34,7 @@
       {else}
         {if ($name == "panel")}
                   <li class="nav-item">
-                      <a class="nav-link hicons" href="{$item.link}" style="color: inherit" target="{$item.target}">{$item.icon}</a>
+                      <a class="nav-link hicons" href="{$item.link}" target="{$item.target}">{$item.icon}</a>
                   </li>
         {elseif ($name == "register")}
                   <li class="nav-item">
@@ -161,10 +161,18 @@
 <main>
 <div class="container">
 {if ($MZ_GS.WEB_ANUN == "1")}
-  <div class="alert alert-{$MZ_AS.TIPO}">
-    <b>{$MZ_AS.TITULO}</b>
-    <p class="m-0">{$MZ_AS.DESCRI}</p>
+  <div class="anuncio anuncio-{$MZ_AS.TIPO}">
+    <div class="anuncio-contenido">
+      <span class="anuncio-title">
+        {$MZ_AS.TITULO}
+      </span>
+      <span class="anuncio-des">
+        {$MZ_AS.DESCRI}
+      </span>
+    </div>
   </div>
 {/if}
 
 </div>
+
+

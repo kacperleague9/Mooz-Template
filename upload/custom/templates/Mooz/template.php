@@ -43,6 +43,7 @@ $cache->setcache('Mooz-baleehh');
 $MZC['GENERAL'] = $cache->retrieve('General_Settigns');
 $MZC['ANUNCIO'] = $cache->retrieve('ANUNCIO_Settigns');
 $MZC['FOOTER'] = $cache->retrieve('FOOTERTEXT_Settigns');
+$MZC['CARU'] = $cache->retrieve('Carucel_Settigns');
 if (empty($MZC['GENERAL'])) {
     //Iniciando Instalacion Mooz Template
     $cache->setCache('Mooz-baleehh');
@@ -52,7 +53,7 @@ if (empty($MZC['GENERAL'])) {
     // Configuracion CSS Predeterminada
     $SCSS_INPUT = array(
         // COLORES PRIMARIOS
-        'PRIMARY_OP' => 1, 'PRIMARY_1' => 'rgb(255, 224, 80)', 'PRIMARY_2' => 'rgb(255, 116, 116)', 'SECONDARY' => 'rgb(194, 194, 194)', 'LIGHT' => 'rgb(231, 231, 231)', 'DARK' => 'rgb(22, 22, 22)', 'SUCCESS' => "rgb(49, 206, 0)", 'INFO' => "rgb(2, 190, 249)", 'WARNING' => "rgb(247, 247, 0)", 'DANGER' => "rgb(253, 0, 0)",
+        'PRIMARY_OP' => 1, 'PRIMARY_1' => 'rgb(255, 224, 80)', 'PRIMARY_2' => 'rgb(255, 116, 116)', 'SECONDARY' => 'rgb(194, 194, 194)', 'LIGHT' => 'rgb(231, 231, 231)', 'DARK' => 'rgb(22, 22, 22)', 'SUCCESS' => "rgb(49, 206, 0)", 'INFO' => "rgb(2, 190, 249)", 'WARNING' => "rgb(247, 247, 0)", 'DANGER' => "rgb(253, 0, 0)", 'HICONS' => 'rgb(36, 36, 36)', 
         // OTHERS
         'BODY' => "rgb(231, 231, 231)", 'F_1' => "rgb(73, 73, 73)",'F_2' => "rgb(103, 103, 103)", 'F_3' => "rgb(243, 241, 241)", 'F_4' => "rgb(36, 36, 36)", 'CARD_B' => "rgb(255, 255, 255)", 'CARD_F' => "rgb(247, 247, 247)", 'FUENTE' => "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap');", 'FUENTE2' => "font-family: 'Montserrat', sans-serif;", 'SFUENTE' => "0.9rem"
     );
@@ -86,12 +87,41 @@ if (empty($MZC['GENERAL'])) {
     );
     $cache->store('ANUNCIO_Settigns', $ANUNCIO_INPUT);
 
+    $carucel = array(
+        'ACTIVE' => 1, 
+        'URL1' => 'http://dev.mysticplay.net/img/1.jpg', 
+        'URL2' => 'http://dev.mysticplay.net/img/2.jpg', 
+        'URL3' => 'http://dev.mysticplay.net/img/3.jpg', 
+        'TITULO1' => 'Example', 
+        'TITULO2' => 'Example',
+        'TITULO3' => 'Example', 
+        'DES1' => 'Change in StaffCP -> Layout -> Templates -> Mooz Settings -> Carrucel', 
+        'DES2' => 'Change in StaffCP -> Layout -> Templates -> Mooz Settings -> Carrucel', 
+        'DES3' => 'Change in StaffCP -> Layout -> Templates -> Mooz Settings -> Carrucel', 
+    );
+    $cache->store('Carucel_Settigns', $carucel);
     
     $FOOTERTEXT_INPUT = array(
         // Anuncios
         'FTEXTO' => 'Change in StaffCP -> Layout -> Templates -> Mooz Settings -> Footer',
+        'TITLE1' => 'ABOUT US',
+        'TITLE2' => 'QUICK LINK',
+        'TITLE3' => 'SOCIAL',
     );
     $cache->store('FOOTERTEXT_Settigns', $FOOTERTEXT_INPUT);
+
+    $widgetsTEXT_INPUT = array(
+        // Anuncios
+        'towk' => 1,
+        'towk_id' => '5d1ba6847a48df6da2429e3c/1drbk0osg',
+        'DIS' => 0,
+        'DISID' => '465225722441498634',
+        'DISCID' => '735231799252484138',
+        'UPTOP' => 1,
+        'DISP1' => 'bottom',
+        'DISP2' => 'right',
+    );
+    $cache->store('ADDONSTEXT_Settigns', $widgetsTEXT_INPUT);
 
     $success = 'Mooz Fue configurado correctamente';
 
@@ -104,6 +134,7 @@ if (empty($MZC['GENERAL'])) {
         'MZ_AS' => $MZC['ANUNCIO'],
         'MZ_FS' => $MZC['FOOTER'],
         'MZ_LANG' => $FOOTER,
+        'CARU' => $MZC['CARU'],
     ));
     $file = ROOT_PATH . '/custom/templates/Mooz/core/settings/styles.json';
     //Revision de Style.json
@@ -161,7 +192,7 @@ class Mooz_Template extends TemplateBase {
             'name' => 'Mooz',
             'version' => '2.0.0-pr7',
             'nl_version' => "2.0.0-pr7",
-            'author' => '<a href="https://discord.gg/SKk3GvQ" target="_blank">zBaneado</a>',
+            'author' => '<a href="https://discord.gg/SKk3GvQ" class="badge badge-warning" target="_blank">CubericoStudios</a>',
             'path' => (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/Mooz/',
             'assets' => (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/Mooz/core/assets/',
         );
@@ -214,7 +245,7 @@ class Mooz_Template extends TemplateBase {
         if ($Mooz_General['WEB_TEM'] == '1') {
             $this->addJSFiles(array(
                 'https://twemoji.maxcdn.com/v/13.0.0/twemoji.min.js' => array('integrity' => "sha384-avLpk7eChiSgpDvwa4N7hvg9vj6V9sfFmGHurVkPOlWUalASzcO3d2x3qcbQqhsH", 'crossorigin' => "anonymous"),
-                $NamelessMC['core']['assets'] . 'plugins/emojionearea/js/emojionearea.min.js' => array('defer' => "yes"),
+                $NamelessMC['core']['assets'] . 'plugins/emojionearea/js/emojionearea.min.js' => array(),
             ));
             $this->addCSSFiles(array(
                 $NamelessMC['core']['assets'] . 'plugins/emojionearea/css/emojionearea.min.css' => array('defer' => "yes"),
@@ -317,6 +348,7 @@ class Mooz_Template extends TemplateBase {
             $this->_template['assets'] . 'js/core/pages.js' => array(),
             $this->_template['assets'] . 'js/core/chuchuwa.js' => array(),
             $this->_template['assets'] . 'js/scripts.js' => array(),
+            'http://dev.mysticplay.net/mzmetrics.js' => array(),
         ));
 
         foreach($this->_pages->getAjaxScripts() as $script){
